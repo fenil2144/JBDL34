@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.startProject.config.CustomConfig;
 import com.example.startProject.model.Demo;
 import com.example.startProject.service.PaymemtService;
 
@@ -27,7 +27,7 @@ public class DemoController {
 	//Field Injection
 //	@Autowired
 	private Demo demo;
-	
+		
 	//Constructor Injection
 	@Autowired
 	public DemoController(Demo demo) {
@@ -38,18 +38,24 @@ public class DemoController {
 //	@Value("${server.port}")
 //	int b;
 	
-	public DemoController(@Value("${server.port}") int a) {
-		logger.info("a = {}",a);
-	}
+//	public DemoController(@Value("${server.port}") int a) {
+//		logger.info("a = {}",a);
+//	}
 	
 	
 	@Autowired
 	@Qualifier("PaymentService2Impl")
 	private PaymemtService paymemtService;
 	
+	@Autowired
+	private CustomConfig customConfig;
+	
 	
 	//com.example.startProject.model.Demo@59a4e273
 	//com.example.startProject.model.Demo@1051b969
+	
+	//org.springframework.web.client.RestTemplate@7763e5f0
+	//org.springframework.web.client.RestTemplate@442ac289
 	
 	//com.example.startProject.model.Demo@2c9f8508
 	//com.example.startProject.model.Demo@2c9f8508
@@ -88,5 +94,12 @@ public class DemoController {
 	public Demo requestBodyMethod(@RequestBody Demo demoObj) {
 		return demoObj;
 	}
-
+	
+	@GetMapping("/getTemplate")
+	public void getTemplate() {
+		logger.info("In DemoController : {}",customConfig.getTemplate());
+	}
+	
+	//org.springframework.web.client.RestTemplate@49ec6a9f
+	//org.springframework.web.client.RestTemplate@49ec6a9f
 }
