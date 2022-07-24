@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.url">jdbc:mysql://localhost:8080/jbdl34</property>
+		username, password, driver class, 
+		hbm2ddl.auto - update
+	</session-factory>
+</hibernate-configuration>
+
+
